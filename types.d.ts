@@ -4391,6 +4391,7 @@ declare class JavascriptParser extends Parser {
 		expressionLogicalOperator: SyncBailHook<[Expression], boolean | void>;
 		program: SyncBailHook<[Program, Comment[]], boolean | void>;
 		finish: SyncBailHook<[Program, Comment[]], boolean | void>;
+		commentOptions: SyncWaterfallHook<[null | Object, Expression]>;
 	}>;
 	sourceType: "module" | "script" | "auto";
 	scope: ScopeInfo;
@@ -4648,8 +4649,11 @@ declare class JavascriptParser extends Parser {
 	getVariableInfo(name: string): ExportedVariableInfo;
 	setVariable(name: string, variableInfo: ExportedVariableInfo): void;
 	parseCommentOptions(
-		range?: any
-	): { options: null; errors: null } | { options: object; errors: any[] };
+		range?: any,
+		expr?: any
+	):
+		| { errors: null; options: null | Object }
+		| { options: object; errors: any[] };
 	extractMemberExpressionChain(
 		expression: MemberExpression
 	): {
