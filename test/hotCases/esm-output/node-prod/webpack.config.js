@@ -14,6 +14,7 @@ module.exports = {
 		}
 	},
 	output: {
+		clean: true,
 		module: true,
 		chunkFormat: "module",
 		filename: "[name].mjs",
