@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Use Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: lts/*
           cache: yarn
@@ -28,21 +28,21 @@ jobs:
       - run: yarn --frozen-lockfile
 
       - name: Cache prettier result
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: ./node_modules/.cache/prettier/.prettier-cache
           key: lint-prettier-${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/.prettierrc.js') }}
           restore-keys: lint-prettier-
 
       - name: Cache eslint result
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: .eslintcache
           key: lint-eslint-${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/eslint.config.mjs') }}
           restore-keys: lint-eslint-
 
       - name: Cache cspell result
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: .cspellcache
           key: lint-cspell-${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/cspell.json') }}
@@ -66,7 +66,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Use Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: lts/*
           cache: yarn
@@ -80,10 +80,10 @@ jobs:
       - name: Collect types coverage
         run: yarn types:cover:report
 
-      - uses: jwalton/gh-find-current-pr@89ee5799558265a1e0e31fab792ebb4ee91c016b # v1.3.3
+      - uses: jwalton/gh-find-current-pr@f3d61b485d2801773f7a07b2aaa3306bd8f8e653 # v1.3.5
         id: findPr
 
-      - uses: Nef10/lcov-reporter-action@1814ba7cc12deff58d1f868c5960d8a8c5b4f040 # v0.3.0
+      - uses: Nef10/lcov-reporter-action@797ec1c1e78e3a9a7890c1a104d58b9e05fcef76 # v0.3.0
         with:
           pr-number: ${{ steps.findPr.outputs.number }}
           lcov-file: ./coverage/lcov.info
@@ -96,7 +96,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Use Node.js 10.x
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: 10.x
           cache: yarn
@@ -112,7 +112,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Use Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: lts/*
           cache: yarn
@@ -131,7 +131,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Use Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: lts/*
           cache: yarn
@@ -143,7 +143,7 @@ jobs:
       - run: yarn link webpack --frozen-lockfile
 
       - name: Cache jest result
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: .jest-cache
           key: jest-unit-${{ env.GITHUB_SHA }}
@@ -152,7 +152,7 @@ jobs:
       - run: yarn cover:unit --ci --cacheDirectory .jest-cache
 
       - name: Codecov
-        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
+        uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
         with:
           flags: unit
         env:
@@ -205,7 +205,7 @@ jobs:
             }
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: ${{ matrix.node-version }}
           architecture: ${{ steps.calculate_architecture.outputs.result }}
@@ -240,7 +240,7 @@ jobs:
       - run: yarn link webpack --frozen-lockfile
 
       - name: Cache jest result
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5.0.3
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: .jest-cache
           key: jest-integration-${{ env.GITHUB_SHA }}
@@ -251,7 +251,7 @@ jobs:
       - run: yarn report:cover:merge
 
       - name: Codecov
-        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
+        uses: codecov/codecov-action@57e3a136b779b570ffcdbf80b3bdc90e7fab3de2 # v6.0.0
         with:
           flags: integration
         env:
