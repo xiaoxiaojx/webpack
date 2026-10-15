@@ -36,7 +36,7 @@ jobs:
           fetch-depth: 0
 
       - name: Use Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: lts/*
           cache: yarn
@@ -54,7 +54,7 @@ jobs:
           console.log(`--- Memory Status ---\nTotal: ${toGb(os.totalmem())}\nFree:  ${toGb(os.freemem())}\nUsed:  ${toGb(os.totalmem()-os.freemem())}`)'
 
       - name: Run benchmarks
-        uses: CodSpeedHQ/action@4296e51e7041e24dadb86d1d6e8b9320d223dbe8 # v5.0.3
+        uses: CodSpeedHQ/action@f842b9a3ffe213dbb81768fd7f7eeb4dfcf1c369 # v5.4.2
         with:
           run: yarn benchmark --ci
           mode: "simulation"
@@ -81,7 +81,7 @@ jobs:
           fetch-depth: 0
 
       - name: Use Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: lts/*
           cache: yarn
@@ -99,7 +99,7 @@ jobs:
           console.log(`--- Memory Status ---\nTotal: ${toGb(os.totalmem())}\nFree:  ${toGb(os.freemem())}\nUsed:  ${toGb(os.totalmem()-os.freemem())}`)'
 
       - name: Run memory benchmarks
-        uses: CodSpeedHQ/action@4296e51e7041e24dadb86d1d6e8b9320d223dbe8 # v5.0.3
+        uses: CodSpeedHQ/action@f842b9a3ffe213dbb81768fd7f7eeb4dfcf1c369 # v5.4.2
         with:
           run: yarn benchmark --ci
           mode: "memory"
